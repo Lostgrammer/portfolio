@@ -17,9 +17,11 @@ from django.contrib import admin
 from django.urls import path
 #importando
 from login import views
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     #nueva ruta
     path('',views.index),
 ]
+urlpatterns +=staticfiles_urlpatterns()
