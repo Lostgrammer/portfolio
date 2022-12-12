@@ -27,5 +27,5 @@ urlpatterns = [
     #ingresar
     path('registrar/', views.register, name='register'),
     #iniciar sesion
-    path('', views.login, name='login'),
+    path('', views.loginn, name='login'),
 ]
