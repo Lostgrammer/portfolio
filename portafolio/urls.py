@@ -23,7 +23,9 @@ from register import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     #nuevas rutas
-    path('',views.index, name='index'),
+    path('index',views.index, name='index'),
     #ingresar
-    path('registrar/', views.register, name='register')
+    path('registrar/', views.register, name='register'),
+    #iniciar sesion
+    path('', views.login, name='login'),
 ]
