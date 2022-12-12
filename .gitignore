@@ -3,3 +3,4 @@
 portafolio/__pycache__/settings.cpython-310.pyc
 portafolio/__pycache__/urls.cpython-310.pyc
 login/__pycache__/views.cpython-310.pyc
+register/__pycache__/views.cpython-310.pyc
