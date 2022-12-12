@@ -1,9 +1,9 @@
 from django.shortcuts import render,redirect
 #registro de usuario
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 #comparar datos de usuario
 from django.contrib.auth.models import User
-from django.http import HttpResponse
+from django.contrib.auth import authenticate,login
 
 # Create your views here.
 def index(request):
@@ -21,6 +21,7 @@ def register(request):
                 # registrar usuario
                 user = User.objects.create_user(username=request.POST['username'], password=request.POST['password1'])
                 user.save()
+                login(request,user)
                 return redirect('login')
             except:
                 return render(request, "register.html", {
@@ -33,5 +34,19 @@ def register(request):
         })
 
 #funcion para logearse
-def login(request):
-    return render(request,'login.html')
+def loginn(request):
+    if request.method == 'GET':
+        return render(request, 'login.html', {
+            'form': AuthenticationForm
+        })
+    else:
+        user = authenticate(request, username=request.POST['username'],password=request.POST['password'])
+
+        if user is None:
+            return render(request, 'login.html', {
+                'form': AuthenticationForm,
+                'error': 'Usuario no encontrado o contra invalida'
+            })
+        else:
+            login(request,user)
+            return redirect('index')
