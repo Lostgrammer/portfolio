@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 #registro de usuario
 from django.contrib.auth.forms import UserCreationForm
 #comparar datos de usuario
@@ -21,7 +21,7 @@ def register(request):
                 # registrar usuario
                 user = User.objects.create_user(username=request.POST['username'], password=request.POST['password1'])
                 user.save()
-                return HttpResponse('Usuario creado')
+                return redirect('login')
             except:
                 return render(request, "register.html", {
                     'form': UserCreationForm,
@@ -32,4 +32,6 @@ def register(request):
             'error': 'Las contras no coinciden'
         })
 
-
+#funcion para logearse
+def login(request):
+    return render(request,'login.html')
